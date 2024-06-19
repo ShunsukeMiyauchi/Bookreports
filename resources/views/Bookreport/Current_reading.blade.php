@@ -9,10 +9,12 @@
     <body>
         <h1>現在読んでいる本リスト</h1>
         <div class=''>
+            @foreach
                 <h2 class=''></h2>
             <div class=''>
                 <p class=''></p>
             </div>
+            @endforeach
         </div>
     </body>
 </html>
