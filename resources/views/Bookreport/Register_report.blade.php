@@ -10,7 +10,7 @@
         <h1>新規レポート作成</h1>
         <div class='report_content'>
                 <p class='reference'>参照している本</p>
-                <h2 class='report_title'>レポートタイトル</h2>
+                <h2 class='report_title'>タイトル</h2>
                 <h2 class='text'>本文</h2>
     <!--「登録する」ボタンはJavascript-->
             </div>
