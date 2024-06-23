@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\BookController;
+use App\Http\Controllers\ReportController;
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,21 +25,32 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/', [PostController::class, 'index'])->name('index')->middleware('auth');
-    // 名前付きルートとは、ルーティングにname('name名')を付与することで、ルートの名前を指定することができます。
-    // カリキュラム9-4
+Route::controller(BookController::class)->middleware(['auth'])->group(function(){
+   Route::get('/schedule', 'schedule')->name('schedule');
+   Route::get('/newbooks', 'newbook');
+});//本登録画面
 
-Route::get('/', function() {
-    return view('Bookreport.Current_reading');
-}); //現在読んでいる本リスト画面
+Route::controller(ReportController::class)->middleware(['auth'])->group(function(){
+   Route::get('/newreports', 'newreport'); 
+   Route::get('/search', 'search')->name('search');
+});//レポート登録画面
 
-Route::get('/', function() {
-    return view('Bookreport.Register_book');
-}); //本登録画面
+Route::controller(CategoryController::class)->middleware(['auth'])->group(function(){
+   Route::get('/categories', 'category')->name('category'); 
+});//カテゴリー画面
 
-Route::get('/', function() {
-    return view('Bookreport.Register_report');
-}); //レポート登録画面
+
+/*下記のように、同じcontroller内に複数の関数指示を書くことができる。
+  Route::controller(PostController::class)->middleware(['auth'])->group(function(){
+    Route::get('/', 'index')->name('index');
+    Route::post('/posts', 'store')->name('store');
+    Route::get('/posts/create', 'create')->name('create');
+    Route::get('/posts/{post}', 'show')->name('show');
+    Route::put('/posts/{post}', 'update')->name('update');
+    Route::delete('/posts/{post}', 'delete')->name('delete');
+    Route::get('/posts/{post}/edit', 'edit')->name('edit');
+　あとはcontroller内でそれぞれの関数毎のviewへ返してやればいい
+*/
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

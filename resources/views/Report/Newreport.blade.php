@@ -12,7 +12,6 @@
                 <p class='reference'>参照している本</p>
                 <h2 class='report_title'>タイトル</h2>
                 <h2 class='text'>本文</h2>
-    <!--「登録する」ボタンはJavascript-->
             </div>
         </div>
     </body>

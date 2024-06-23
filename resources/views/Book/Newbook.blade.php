@@ -14,7 +14,7 @@
                 <h2 class='borrow_at'>貸し出し日</h2>
                 <h2 class='return_at'>返却日</h2>
             <div class='after_regist'>
-                <p class='book_current'>現在の本リストに登録</p>
+                <p class='book_current'>返却スケジュールに登録</p>
                 <p class='report'>この本のレポートを新たに作る</p>
             </div>
         </div>
