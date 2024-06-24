@@ -12,4 +12,5 @@ class CategoryController extends Controller
         return view('Book.Category');
         //現在の本リスト画面
     }
+    
 }

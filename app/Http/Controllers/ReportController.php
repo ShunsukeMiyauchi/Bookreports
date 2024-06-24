@@ -10,12 +10,25 @@ class ReportController extends Controller
     public function newreport(Report $newreport)
     {
          return view('Report.Newreport');
-    //
+    //新規レポート作成画面
+    }
+    
+    public function store(Request $request, Report $report)
+    {
+        $input = $request['report'];
+        $report->fill($input)->save();
+        return redirect('/newreport' . $report->id);
     }
     
     public function search(Report $search)
     {
          return view('Report.Search');
-    //
+    //レポート検索画面
+    }
+    
+    public function edit(Report $edit)
+    {
+         return view('Report.Edit');
+    //レポート編集画面
     }
 }
