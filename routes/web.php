@@ -27,16 +27,20 @@ Route::get('/dashboard', function () {
 
 Route::controller(BookController::class)->middleware(['auth'])->group(function(){
    Route::get('/schedule', 'schedule')->name('schedule');
-   Route::get('/newbooks', 'newbook');
+   Route::get('/newbook', 'newbook')->name('newbook');
+   Route::post('/newbook', 'store');//新規本入力
 });//本登録画面
 
 Route::controller(ReportController::class)->middleware(['auth'])->group(function(){
-   Route::get('/newreports', 'newreport'); 
+   Route::get('/newreport', 'newreport'); 
+   Route::post('/newreport', 'store');//新規レポート入力
    Route::get('/search', 'search')->name('search');
+   Route::get('/edit', 'edit');
 });//レポート登録画面
 
 Route::controller(CategoryController::class)->middleware(['auth'])->group(function(){
    Route::get('/categories', 'category')->name('category'); 
+   Route::post('/categories', 'store');//新規カテゴリー入力
 });//カテゴリー画面
 
 
