@@ -10,14 +10,9 @@
         <h1>レポートの編集</h1>
         <form action="/edit" method="POST">　<!--editだけどPOST関数でいいの？-->
             @csrf
-            <div class='title'>
-                <h2>タイトル</h2>
-                <input type="text" name="report[title]"/>
-            </div>
-            　<h2 class='category'>本のカテゴリー</h2>
-            <div class='return_at'>
-                <h2>返却日</h2>
-                <input type="date" name="report[return_at]"/>
+            <div class='text'>
+                <h2>本文</h2>
+                <!--<textarea name="report[text]" placeholder="筆者の言いたいこと"></textarea><br>-->
             </div>
             <div class='after_register'>
                 <input type="submit" value="レポートを編集する"/> <!--editだけどsubmitでいいの？-->

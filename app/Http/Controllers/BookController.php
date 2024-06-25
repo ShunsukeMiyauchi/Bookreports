@@ -7,9 +7,9 @@ use App\Models\Book;
 
 class BookController extends Controller
 {
-    public function schedule(Book $schedule)
+    public function schedule(Book $book)
     {
-        return view('Book.Schedule');
+        return view('Book.Schedule')->with(['books' => $book->get()]);
         //スケジュール画面
     }
     
