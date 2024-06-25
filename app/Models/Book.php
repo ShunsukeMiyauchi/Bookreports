@@ -14,6 +14,7 @@ class Book extends Model
             'borrow_at',
             'return_at',
     ];
+// 本がどのカテゴリーに属するかをいつ決めるか、またcategory_idをどう指定するか
 
     
     public function user()   

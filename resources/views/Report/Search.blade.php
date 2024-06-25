@@ -7,7 +7,7 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     </head>
     <body>
-        <h1>検索</h1>
+        <h1>ノート検索</h1>
         <div class='search_item'>
                 <h2 class='keyword'>キーワード</h2>
                 <h2 class='titletext'>タイトル,本文</h2>
@@ -15,10 +15,29 @@
                 <p class='search_term'>検索期間</p>
             </div>
         </div>
-<!--・キーワード ・タイトル＋本文
-・カテゴリー　カテゴリーのみが選択された画面にする？
-・検索する期間　具体的な期間まで設定できるように？
-javaScriptとかで「検索」ボタン
--->
+　　　　<div class='reports'>
+            @foreach ($reports as $report)
+                <div class='report'>
+                    <p class='reference'>参照：{{ $report->book_id }}</p>
+                    <!--DBの変更をした上で「book_title」に変えること-->
+                    <h2 class='created_at'>作成日時{{ $report->created_at }}</h2>
+                    <h2 class='text'>本文{{ $report->body }}</h2>
+                    <h2 class='updated_at'>編集日時{{ $report->updated_at }}</h2>
+                </div>
+            @endforeach
+        </div>
+        <div class='paginate'>
+            {{ $reports->links() }}
+        </div>
     </body>
 </html>
+<!--
+book_id
+body
+created_at
+updated_at
+-->
+<!--
+・カテゴリー　カテゴリーのみが選択された画面にする？
+-->
+    

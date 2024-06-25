@@ -20,9 +20,9 @@ class ReportController extends Controller
         return redirect('/newreport' . $report->id);
     }
     
-    public function search(Report $search)
+    public function search(Report $report)
     {
-         return view('Report.Search');
+        return view('Report.Search')->with(['reports' => $report->getPaginateByLimit()]);
     //レポート検索画面
     }
     

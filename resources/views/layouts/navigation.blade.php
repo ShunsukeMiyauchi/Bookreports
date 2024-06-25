@@ -22,10 +22,10 @@
                         {{ __('新しい本の登録') }}
                     </x-nav-link>
                     <x-nav-link :href="route('search')" :active="request()->routeIs('search')">
-                        {{ __('検索画面') }}
+                        {{ __('ノート検索') }}
                     </x-nav-link>
                     <x-nav-link :href="route('category')" :active="request()->routeIs('category()')">
-                        {{ __('カテゴリー') }}
+                        {{ __('本のカテゴリー') }}
                     </x-nav-link>
                 </div>
             </div>
