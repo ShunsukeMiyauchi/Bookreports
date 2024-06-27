@@ -9,7 +9,7 @@ class ReportController extends Controller
 {
     public function newreport(Report $newreport)
     {
-         return view('Report.Newreport');
+         return view('Report.Newreport')->with(['book' => $newreport]);
     //新規レポート作成画面
     }
     
@@ -20,15 +20,15 @@ class ReportController extends Controller
         return redirect('/newreport' . $report->id);
     }
     
-    public function search(Report $report)
+    public function listing(Report $report)
     {
-        return view('Report.Search')->with(['reports' => $report->getPaginateByLimit()]);
+        return view('Report.List')->with(['reports' => $report->getPaginateByLimit()]);
     //レポート検索画面
     }
     
     public function edit(Report $edit)
     {
-         return view('Report.Edit');
+         return view('Report.Edit')->with(['report' => $edit]);
     //レポート編集画面
     }
 }

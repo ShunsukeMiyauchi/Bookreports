@@ -1,13 +1,16 @@
-<!DOCTYPE html>
-<html lang="ja">
-    <head>
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('新しい本の登録') }}
+        </h2>
+    </x-slot>
+　　<head>
         <meta charset="utf-8">
-        <title>Register_book</title>
+        <title>newbook_book</title>
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     </head>
     <body>
-        <h1>新しい本の登録</h1>
         <form action="/newbook" method="POST">
             @csrf
             <div class='title'>
@@ -24,9 +27,8 @@
                 <input type="date" name="book[return_at]"/>
             </div>
             <div class='after_register'>
-                <input type="submit" value="返却スケジュールに登録"/> <!--チェックボックスのようにできるといいかも？-->
-                <input type="submit" value="この本のレポートを作る"/> <!--/newreport画面へ遷移-->
+                <input type="submit" value="登録"/> 
             </div>
         </form>
     </body>
-</html>
+</x-app-layout>
