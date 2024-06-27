@@ -9,7 +9,7 @@ class CategoryController extends Controller
 {
     public function category(Category $category)
     {
-        return view('Book.Category');
+        return view('Category.Category')>with(['categories' => $category]);
         //現在の本リスト画面
     }
     

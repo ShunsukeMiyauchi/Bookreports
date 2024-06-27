@@ -12,20 +12,14 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                    <x-nav-link :href="route('listbook')" :active="request()->routeIs('listbook')">
+                        {{ __('ホーム画面') }}
                     </x-nav-link>
                     <x-nav-link :href="route('schedule')" :active="request()->routeIs('schedule')">
                         {{ __('返却スケジュール') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('newbook')" :active="request()->routeIs('newbook')">
-                        {{ __('新しい本の登録') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('search')" :active="request()->routeIs('search')">
-                        {{ __('ノート検索') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('category')" :active="request()->routeIs('category()')">
-                        {{ __('本のカテゴリー') }}
+                    <x-nav-link :href="route('listreport')" :active="request()->routeIs('listreport')">
+                        {{ __('レポートリスト') }}
                     </x-nav-link>
                 </div>
             </div>
