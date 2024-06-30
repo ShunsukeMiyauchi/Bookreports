@@ -35,10 +35,12 @@ Route::controller(BookController::class)->middleware(['auth'])->group(function()
 
 Route::controller(ReportController::class)->middleware(['auth'])->group(function(){
    Route::get('/lis/{newreport}', 'newreport');
-   Route::post('/listbook/{newreport}', 'store');//新規レポートを、本のIDを受けながら作成
-   Route::get('/listbook/{accompany}', 'accompany');
-   Route::get('/listreport', 'listing')->name('listreport');
-   Route::get('/listreport/{report}', 'edit');
+   Route::post('/listbook/{newreport}', 'store');//「この本のレポートを作成する」
+   Route::get('/listbook/{accompany}', 'accompany');//「この本のレポートを見る」&テキスト編集
+   Route::post('/listbook/{accompany}', 'update');
+   Route::get('/listreport', 'listing')->name('listreport');//レポートリスト
+   Route::get('/listreport/{report}edit', 'edition');//レポートリスト→特定のレポート編集
+   Route::post('/listreport/{report}', 'updation');
 });//レポート登録画面
 
 Route::controller(CategoryController::class)->middleware(['auth'])->group(function(){
@@ -46,19 +48,6 @@ Route::controller(CategoryController::class)->middleware(['auth'])->group(functi
    Route::get('/list/{category}', 'category'); 
    Route::post('/listbook/{category}', 'store');//
 });
-
-
-/*下記のように、同じcontroller内に複数の関数指示を書くことができる。
-  Route::controller(PostController::class)->middleware(['auth'])->group(function(){
-    Route::get('/', 'index')->name('index');
-    Route::post('/posts', 'store')->name('store');
-    Route::get('/posts/create', 'create')->name('create');
-    Route::get('/posts/{post}', 'show')->name('show');
-    Route::put('/posts/{post}', 'update')->name('update');
-    Route::delete('/posts/{post}', 'delete')->name('delete');
-    Route::get('/posts/{post}/edit', 'edit')->name('edit');
-　あとはcontroller内でそれぞれの関数毎のviewへ返してやればいい
-*/
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

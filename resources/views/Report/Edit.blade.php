@@ -12,11 +12,13 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     </head>
     <body>
-    　<p>{{$report}}</p>
-        <form action='/listreport/{edit}' method="POST">　<!--editだけどPOST関数でいいの？-->
+    　 <p>{{$edit}}</p>
+    　 <h4>既存の本文：{{ $edit->body }}</h4>
+        <form action='/listreport/{{ $edit->id }}/edit' method="POST">
             @csrf
+            @method('PUT')
             <div class='text'>
-                <textarea name="report[text]" placeholder={{$report->body}}></textarea><br>
+              <textarea id="text" name="report[body]"></textarea>
             </div>
             <input type="submit" value="編集"/>
         </form>
