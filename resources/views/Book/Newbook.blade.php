@@ -17,7 +17,14 @@
                 <h2>タイトル</h2>
                 <input type="text" name="book[title]"/>
             </div>
-                <h2 class='category'>本のカテゴリー</h2>
+            <div class="category">
+                <h2>カテゴリー</h2>
+                <select name="book[category_id]">
+                    @foreach($categories as $category)
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endforeach
+                </select>
+            </div>
             <div class='borrow_at'>
                 <h2>貸し出し日</h2>
                 <input type="date" name="book[borrow_at]"/>
@@ -26,9 +33,7 @@
                 <h2>返却日</h2>
                 <input type="date" name="book[return_at]"/>
             </div>
-            <div class='after_register'>
-                <input type="submit" value="登録"/> 
-            </div>
+            <input type="submit" value="登録"/> 
         </form>
     </body>
 </x-app-layout>

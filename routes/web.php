@@ -28,7 +28,6 @@ Route::get('/dashboard', function () {
 Route::controller(BookController::class)->middleware(['auth'])->group(function(){
    Route::get('/schedule', 'schedule')->name('schedule');
    Route::get('/listbook', 'listing')->name('listbook');
-   Route::get('/listbook/{accompany}', 'accompany');
    Route::get('/newbook', 'newbook');
    Route::post('/newbook', 'store');//新規本入力
 });
@@ -37,14 +36,16 @@ Route::controller(BookController::class)->middleware(['auth'])->group(function()
 Route::controller(ReportController::class)->middleware(['auth'])->group(function(){
    Route::get('/lis/{newreport}', 'newreport');
    Route::post('/listbook/{newreport}', 'store');//新規レポートを、本のIDを受けながら作成
+   Route::get('/listbook/{accompany}', 'accompany');
    Route::get('/listreport', 'listing')->name('listreport');
-   Route::get('/listreport/{edit}', 'edit');
+   Route::get('/listreport/{report}', 'edit');
 });//レポート登録画面
 
 Route::controller(CategoryController::class)->middleware(['auth'])->group(function(){
+   Route::get('/categories/{category}','index');
    Route::get('/list/{category}', 'category'); 
-   Route::post('/listbook/{category}', 'store');//新規カテゴリー入力
-});//カテゴリー画面
+   Route::post('/listbook/{category}', 'store');//
+});
 
 
 /*下記のように、同じcontroller内に複数の関数指示を書くことができる。

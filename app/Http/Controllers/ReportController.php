@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Report;
+use App\Models\Book; 
+
 
 class ReportController extends Controller
 {
-    public function newreport(Report $newreport)
+    public function newreport(Book $newreport)
     {
          return view('Report.Newreport')->with(['book' => $newreport]);
     //新規レポート作成画面
@@ -16,8 +18,16 @@ class ReportController extends Controller
     public function store(Request $request, Report $report)
     {
         $input = $request['report'];
+        $input += ['user_id' => $request->user()->id]; 
+         $input += ['book_id' => $request->book_id];
         $report->fill($input)->save();
-        return redirect('/newreport' . $report->id);
+        return redirect('/listreport');
+    }
+    
+    public function accompany(Report $accompany)
+    {
+        return view('Report.Accompany')->with(['accompany' => $accompany]);
+        //レポート詳細画面
     }
     
     public function listing(Report $report)
@@ -26,9 +36,17 @@ class ReportController extends Controller
     //レポート検索画面
     }
     
-    public function edit(Report $edit)
+    public function edit(Report $report)
     {
-         return view('Report.Edit')->with(['report' => $edit]);
+         return view('Report.Edit')->with(['report' => $report]);
     //レポート編集画面
     }
+    
+    /*public function update(Request $request, Report $report)
+    {
+        $input = $request['report'];
+        $input += ['user_id' => $request->user()->id]; 
+        $report->fill($input)->save();
+        return redirect('/');
+    }*/
 }

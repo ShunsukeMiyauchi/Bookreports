@@ -12,16 +12,16 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     </head>
     <body>
-      <form action="/newbook" method="POST">
+      <p class='reference'>参照している本:{{ $book->title }}</p>
+      <form action="/listbook/{newreport}" method="POST">
          @csrf
         <div class='report'>
-            <p>{{$book}}</p>
-            <p class='reference'>参照している本:{{ $book->title }}</p>
             <div class='text'>
                 <h2>本文</h2>
                 <textarea name="report[body]" placeholder="筆者の言いたいこと"></textarea><br>
             </div>
-             　 <input type="submit" value="作成"/> 
+              <input type="hidden" name="book_id" value={{$book->id}}>
+              <input type="submit" value="作成"/> 
         </div>
       </form>
     </body>
