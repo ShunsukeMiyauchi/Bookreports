@@ -25,7 +25,7 @@
                         <p class='updated_at'>編集日時{{ $report->updated_at }}</p>
                     </div>
                     <div class='edit'>
-                        <a href="/listreport/{{$report->id}}">テキストを編集する</a>
+                        <a href="/listreport/{{$report->id}}edit">テキストを編集する</a>
                     </div>
                 @endforeach
             </div>

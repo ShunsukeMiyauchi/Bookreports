@@ -30,23 +30,33 @@ class ReportController extends Controller
         //レポート詳細画面
     }
     
+    public function updsate(Request $request, Report $report)
+    {
+        $input = $request['report'];
+        $input += ['user_id' => $request->user()->id]; 
+        $input += ['book_id' => $request->book_id];
+        $report->fill($input)->save();
+        return redirect('/listreport');
+    }
+    
     public function listing(Report $report)
     {
         return view('Report.List')->with(['reports' => $report->getPaginateByLimit()]);
     //レポート検索画面
     }
     
-    public function edit(Report $report)
+    public function edition(Report $report)
     {
-         return view('Report.Edit')->with(['report' => $report]);
+         return view('Report.Edit')->with(['edit' => $report]);
     //レポート編集画面
     }
     
-    /*public function update(Request $request, Report $report)
+    public function updation(Request $request, Report $report)
     {
         $input = $request['report'];
         $input += ['user_id' => $request->user()->id]; 
+        $input += ['book_id' => $request->book_id];
         $report->fill($input)->save();
-        return redirect('/');
-    }*/
+        return redirect('/listreport');
+    }
 }
