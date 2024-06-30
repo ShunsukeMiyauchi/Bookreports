@@ -17,6 +17,8 @@ class Report extends Model
     
     protected $fillable = [
             'body',
+            'book_id',
+            'user_id'
     ];
 
     

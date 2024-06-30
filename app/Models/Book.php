@@ -13,8 +13,9 @@ class Book extends Model
             'title',
             'borrow_at',
             'return_at',
+            'category_id',
+            'user_id'
     ];
-// 本がどのカテゴリーに属するかをいつ決めるか、またcategory_idをどう指定するか
 
     public $timestamps = false; // https://qiita.com/ikadatic/items/2237a3c1b837894dfc30
     

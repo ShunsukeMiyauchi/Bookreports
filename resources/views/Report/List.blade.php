@@ -23,7 +23,9 @@
                         <p class='created_at'>作成日時{{ $report->created_at }}</p>
                         <h2 class='text'>本文{{ $report->body }}</h2>
                         <p class='updated_at'>編集日時{{ $report->updated_at }}</p>
-                        <a href="/listreport/{{$edit->id}}">このレポートを編集する</a>
+                    </div>
+                    <div class='edit'>
+                        <a href="/listreport/{{$report->id}}">テキストを編集する</a>
                     </div>
                 @endforeach
             </div>

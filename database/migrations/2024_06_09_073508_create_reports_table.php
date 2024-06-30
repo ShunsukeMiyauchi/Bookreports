@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('body', 200);
             $table->dateTime('created_at');
             $table->dateTime('updated_at');
-            $table->dateTime('deleted_at');
+            $table->dateTime('deleted_at'); //datetimeからsoftDeleteに変えること
         });
     }
 

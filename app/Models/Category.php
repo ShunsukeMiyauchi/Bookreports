@@ -9,6 +9,11 @@ class Category extends Model
 {
     use HasFactory;
     
+    public function getByCategory(int $limit_count = 5)
+    {
+        return $this->books()->with('category')->orderBy('borrow_at', 'DESC')->paginate($limit_count);
+    }
+   
     public function books()   
     {
         return $this->hasMany(Book::class);  
