@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\ReportRequest;
 use App\Models\Report;
 use App\Models\Book; 
 
@@ -21,22 +22,33 @@ class ReportController extends Controller
         $input += ['user_id' => $request->user()->id]; 
          $input += ['book_id' => $request->book_id];
         $report->fill($input)->save();
-        return redirect('/listreport');
+        return redirect('/listbook');
     }
     
-    public function accompany(Report $accompany)
+    public function stored(Report $report, ReportRequest $request) // 引数をRequestからReportRequestにする
     {
+        $input = $request['report'];
+        $report->fill($input)->save();
+        return redirect('/listbook/{newreport}');
+    }
+    
+    public function accompany($accompany)
+    {
+        //dd($accompany);
+        // ID($accompany)に合致するレコードを抜き出す
+        $accompany = Report::find($accompany);
         return view('Report.Accompany')->with(['accompany' => $accompany]);
         //レポート詳細画面
     }
     
-    public function updsate(Request $request, Report $report)
+    public function update(ReportRequest $request, Report $accompany)
     {
-        $input = $request['report'];
-        $input += ['user_id' => $request->user()->id]; 
-        $input += ['book_id' => $request->book_id];
-        $report->fill($input)->save();
-        return redirect('/listreport');
+        //dd($request);
+        $input_report = $request['report'];
+        $input_report += ['user_id' => $request->user()->id]; 
+        $input_report += ['book_id' => $request->book_id];
+        $accompany->fill($input_report)->save();
+        return redirect('/listbook');
     }
     
     public function listing(Report $report)
@@ -51,12 +63,13 @@ class ReportController extends Controller
     //レポート編集画面
     }
     
-    public function updation(Request $request, Report $report)
+    public function updation(ReportRequest $request, Report $report)
     {
-        $input = $request['report'];
-        $input += ['user_id' => $request->user()->id]; 
-        $input += ['book_id' => $request->book_id];
-        $report->fill($input)->save();
+        //dd($request->method());
+        $input_report = $request['report'];
+        $input_report += ['user_id' => $request->user()->id]; 
+        $input_report += ['book_id' => $request->book_id];
+        $report->fill($input_report)->save();
         return redirect('/listreport');
     }
 }

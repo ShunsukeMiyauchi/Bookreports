@@ -13,15 +13,17 @@
     </head>
     <body>
     　 <p>{{$edit}}</p>
-    　 <h4>既存の本文：{{ $edit->body }}</h4>
-        <form action='/listreport/{{ $edit->id }}/edit' method="POST">
+        <form action="/listreport/{{ $edit->id }}" method="POST">
             @csrf
             @method('PUT')
             <div class='text'>
-              <textarea id="text" name="report[body]"></textarea>
+              <textarea id="text" name="report[body]">{{ $edit->body }}</textarea>
+              <p class="text__error" style="color:red">{{ $errors->first('report.body') }}</p>
             </div>
+            <input type="hidden" name="book_id" value={{$edit->book_id}}>
             <input type="submit" value="編集"/>
         </form>
+        <div class="back">[<a href="/listreport">戻る</a>]</div>
     </body>
 </html>
 </x-app-layout>

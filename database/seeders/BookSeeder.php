@@ -7,8 +7,6 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use DateTime;
 
-// use Illuminate\Support\Facades\DB;　を追記
-// use DateTime;　を追記
 
 class BookSeeder extends Seeder
 {

@@ -17,10 +17,10 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id')->foreignId('user_id')->references('id')->on('users');
             $table->unsignedBigInteger('book_id')->foreignId('book_id')->references('id')->on('books');
-            $table->string('body', 200);
+            $table->longText('body');//string→longtext
             $table->dateTime('created_at');
             $table->dateTime('updated_at');
-            $table->dateTime('deleted_at'); //datetimeからsoftDeleteに変えること
+            $table->softDeletes($column='deleted_at', $precision=0); //datetimeからsoftDeleteに変えること $precisionはミリ秒まで記録するかという精度の問題で0ならデフォルト
         });
     }
 
