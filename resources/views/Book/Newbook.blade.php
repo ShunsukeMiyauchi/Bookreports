@@ -16,6 +16,7 @@
             <div class='title'>
                 <h2>タイトル</h2>
                 <input type="text" name="book[title]"/>
+                <p class="title__error" style="color:red">{{ $errors->first('book.title') }}</p>
             </div>
             <div class="category">
                 <h2>カテゴリー</h2>
@@ -24,14 +25,17 @@
                         <option value="{{ $category->id }}">{{ $category->name }}</option>
                     @endforeach
                 </select>
+                <p class="category__error" style="color:red">{{ $errors->first('book.category_id') }}</p>
             </div>
             <div class='borrow_at'>
                 <h2>貸し出し日</h2>
                 <input type="date" name="book[borrow_at]"/>
+                <p class="borrow_at__error" style="color:red">{{ $errors->first('book.borrow_at') }}</p>
             </div>
             <div class='return_at'>
                 <h2>返却日</h2>
                 <input type="date" name="book[return_at]"/>
+                <p class="return_at__error" style="color:red">{{ $errors->first('book.return_at') }}</p>
             </div>
             <input type="submit" value="登録"/> 
         </form>
