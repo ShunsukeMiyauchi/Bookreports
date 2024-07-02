@@ -33,7 +33,7 @@ class Book extends Model
     
     public function report()   
     {
-        return $this->hasOne(Report::class);  
+        return $this->hasOne(Report::class, 'book_id', 'id');  
     }
 }
 

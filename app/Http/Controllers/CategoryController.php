@@ -14,19 +14,25 @@ class CategoryController extends Controller
         return view('Category.index')->with(['books' => $category->getByCategory()]);
     }
     
-    public function category(Category $category)
+     public function make_delete(Category $category)
     {
-        return view('Category.change')>with(['categories' => $category]);
-        //現在の本リスト画面
+        return view('Category.make&delete')->with(['categories' => $category->get()]);
     }
     
-    //新規カテゴリーのpostをする際は(CategoryRequest $request Category $category)
-    
-    public function store(Category $category, CategoryRequest $request) // 引数をRequestからPostRequestにする
+    public function delete(Category $category)
     {
+        $category->timestamps = false; 
+        $category->delete();
+        //dd($book);
+        return redirect('/listbook');
+    }
+    
+    public function update(Category $category, /*Category*/Request $request) // 引数をRequestからPostRequestにする
+    {
+        $category->timestamps = false;
         $input = $request['category'];
         $category->fill($input)->save();
-        return redirect('/list/category{category}');
+        return redirect('/listbook');
     }
     
 }

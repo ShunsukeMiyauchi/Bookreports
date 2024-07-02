@@ -18,12 +18,22 @@
                     <h2 class='category'>カテゴリー</h2>
                     <p class='search_term'>検索する期間</p>
             </div>
+            <a href="/listbook/category">カテゴリー作成＆削除</a>
             <div class='books'>
                 @foreach ($books as $book)
                     <div class='book'>
                         <h2 class='title'>{{ $book->title }}</h2>
-                        <a href="/categories/{{ $book->category->id }}">{{ $book->category->name }}</a>
-                        <a href="/list/category{{$book->id}}">カテゴリー編集</a>
+                        <a href="/categories/{{ $book->category->id }}">カテゴリー：{{ $book->category->name }}</a>
+                      <form action="/listbook/{{$book->id}}" method="POST">
+                        @csrf
+                        @method('PUT')
+                        <p>カテゴリー変更</p> 
+                        <select name="book[category_id]">
+                            @foreach($categories as $category)
+                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            @endforeach
+                        </select><input type="submit" value="変更"/>
+                      </form>
                         <p class='borrow_at'>貸出日時 {{ $book->borrow_at }}</p>
                         <p class='return_at'>返却日時 {{ $book->return_at }}</p>
                         <a href="/listbo/{{$book->id}}">レポートを作成する</a>
@@ -39,7 +49,7 @@
             <script>
                 function deletePost(id) {
                     'use strict'
-                    console.log('hssss');
+                    //console.log'hssss');
                     if (confirm('削除すると復元できません。\n本当に削除しますか？')) {
                         document.getElementById(`form_${id}`).submit();
                     }

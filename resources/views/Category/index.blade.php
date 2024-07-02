@@ -22,11 +22,6 @@
                         <a href="/listbo/{{$book->id}}">レポートを作成する</a>
                         <a href="/listboo/{{$book->id}}">レポートを編集する</a>
                     </div>
-                    <!--<form action="/posts/{ $post->id }}" id="form_{ $post->id }}" method="post">
-                            @csrf
-                            @method'DELETE')
-                            <button type="button" onclick="deletePost{ $post->id }})">delete</button> 
-                    </form>-->
                 @endforeach
             </div>
             <div class="back">[<a href="/listbook">本の一覧へ戻る</a>]</div>
