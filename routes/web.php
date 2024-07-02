@@ -42,7 +42,7 @@ Route::controller(ReportController::class)->middleware(['auth'])->group(function
    Route::get('/listreport', 'listing')->name('listreport');//レポートリスト
    Route::get('/listreport/{report}edit', 'edition');//レポートリスト→特定のレポート編集
    Route::put('/listreport/{report}', 'updation');
-   //Route::delete('/posts/{post}','delete');
+   Route::delete('/listreport/{report}','delete');
 });//レポート登録画面
 
 Route::controller(CategoryController::class)->middleware(['auth'])->group(function(){

@@ -57,6 +57,14 @@ class ReportController extends Controller
     //レポート検索画面
     }
     
+    public function delete(Report $report)
+    {
+        //dd($report);
+        $report->delete();
+        //dd($report);
+        return redirect('/listreport');
+    }
+    
     public function edition(Report $report)
     {
          return view('Report.Edit')->with(['edit' => $report]);

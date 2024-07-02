@@ -14,7 +14,7 @@
     <body>
         <p>{{$categories}}</p>
         <h2 class='category_repertory'>表示するカテゴリー</h2>
-        <!-- <input type="text" name="category[name]"/>
+        <!-- <input type="text" name="category[name]"/>s
         <p class="body__error" style="color:red">{ $errors->first'category.name') }}</p>
         <select name="book[category_id]">
             foreach$categories as $category)

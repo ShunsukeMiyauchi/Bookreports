@@ -27,8 +27,22 @@
                     <div class='edit'>
                         <a href="/listreport/{{$report->id}}edit">レポートを編集する</a>
                     </div>
+                    <form action="/listreport/{{$report->id}}" id="form_{{ $report->id }}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button type="button" onclick="deletePost({{ $report->id }})">レポートの削除</button> 
+                    </form>
                 @endforeach
             </div>
+            <script>
+                function deletePost(id) {
+                    'use strict'
+                    //console.log'hssss');
+                    if (confirm('削除すると復元できません。\n本当に削除しますか？')) {
+                        document.getElementById(`form_${id}`).submit();
+                    }
+                }
+            </script>   
             <div class='paginate'>
                 {{ $reports->links() }}
             </div>
