@@ -11,10 +11,19 @@ use App\Models\Category;
 class BookController extends Controller
 {
     
-    public function listing(Book $book)
+    public function listing(Book $book, Category $category)
     {
-        return view('Book.List')->with(['books' => $book->get()]);
+        return view('Book.List')->with(['books' => $book->get(), 'categories' => $category->get()]);
         //登録されている本画面(メインメニュー)
+    }
+    
+    public function update(Book $book, BookRequest $request)
+     { 
+        
+        $input = $request['book'];
+        $book['category_id'] = $input['category_id'];
+        $book->save();
+        return redirect('/listbook');
     }
     
     public function delete(Book $book)
@@ -37,19 +46,13 @@ class BookController extends Controller
         //本登録画面
     }
     
-    public function store(BookRequest $request, Book $book)
+    public function store(Book $book, BookRequest $request)
     {
-        //dd($request);s
+        //dd($request);
         $input = $request['book'];
         $input += ['user_id' => $request->user()->id]; 
         $book->fill($input)->save();
         return redirect('/listbook');
     }
     
-    public function stored(Book $book, BookRequest $request) // 引数をRequestからPostRequestにする
-    {
-        $input = $request['book'];
-        $book->fill($input)->save();
-        return redirect('/newbook');
-    }
 }

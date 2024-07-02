@@ -39,5 +39,6 @@
             </div>
             <input type="submit" value="登録"/> 
         </form>
+        <div class="back">[<a href="/listbook">戻る</a>]</div>
     </body>
 </x-app-layout>

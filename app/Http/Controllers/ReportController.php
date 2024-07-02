@@ -16,7 +16,7 @@ class ReportController extends Controller
     //新規レポート作成画面
     }
     
-    public function store(Request $request, Report $report)
+    public function store(Report $report, ReportRequest $request)
     {
         $input = $request['report'];
         $input += ['user_id' => $request->user()->id]; 
@@ -25,23 +25,17 @@ class ReportController extends Controller
         return redirect('/listbook');
     }
     
-    public function stored(Report $report, ReportRequest $request) // 引数をRequestからReportRequestにする
-    {
-        $input = $request['report'];
-        $report->fill($input)->save();
-        return redirect('/listbook/{newreport}');
-    }
     
-    public function accompany($accompany)
+    public function accompany(Report $report, Book $book)
     {
-        //dd($accompany);
-        // ID($accompany)に合致するレコードを抜き出す
-        $accompany = Report::find($accompany);
-        return view('Report.Accompany')->with(['accompany' => $accompany]);
+        // ID($report)に合致するレコードを抜き出す
+        
+        $book = Book::find($report->book_id)->title; 
+        return view('Report.Accompany')->with(['accompany' => $report, 'book' => $book]);
         //レポート詳細画面
     }
     
-    public function update(ReportRequest $request, Report $accompany)
+    public function update(Report $report, ReportRequest $request)
     {
         //dd($request);
         $input_report = $request['report'];
@@ -53,8 +47,19 @@ class ReportController extends Controller
     
     public function listing(Report $report)
     {
-        return view('Report.List')->with(['reports' => $report->getPaginateByLimit()]);
+        # 2つのテーブルを結合して変数を返す
+        $reports = Report::with('book')->get();
+      
+        return view('Report.List', compact('reports'));
     //レポート検索画面
+    }
+    
+    public function delete(Report $report)
+    {
+        //dd($book);
+        $report->delete();
+        //dd($book);
+        return redirect('/listreport');
     }
     
     public function edition(Report $report)
@@ -63,7 +68,7 @@ class ReportController extends Controller
     //レポート編集画面
     }
     
-    public function updation(ReportRequest $request, Report $report)
+    public function updation(Report $report, ReportRequest $request)
     {
         //dd($request->method());
         $input_report = $request['report'];
