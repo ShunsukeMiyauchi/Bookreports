@@ -13,6 +13,7 @@ class BookController extends Controller
     
     public function listing(Book $book, Category $category)
     {
+        //dd($book);
         return view('Book.List')->with(['books' => $book->get(), 'categories' => $category->get()]);
         //登録されている本画面(メインメニュー)
     }
@@ -34,10 +35,16 @@ class BookController extends Controller
         return redirect('/listbook');
     }
     
-    public function schedule(Book $scheduling)
+    public function schedule(Book $book)
     {
-        return view('Book.Schedule');
-        //スケジュール画面
+        dd($book);
+        //$book= Book::find(1);
+        return view('Book.Schedule')->with(['book' => $book->get()]);
+        //'id'->$book['id'],
+        //'title'->$book['title'],
+        //'start'->$book['borrow_at'],
+        //'end'->$book['return_at'],
+        //)->get();
     }
     
     public function newbook(Category $category)

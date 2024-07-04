@@ -12,9 +12,10 @@
             <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
         </head>
         <body>
+        <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class='search_item'>
                     <h2 class='text'>本文のキーワード</h2>
-                    <p class='search_term'>検索する期間</p>
+                    <p class='search_term'>作成期間で検索</p>
             </div>
     　　　　<div class='reports'>
                 @foreach ($reports as $report)
@@ -46,6 +47,7 @@
             <div class='paginate'>
                 
             </div>
+        </div>
         </body>
     </html>
 </x-app-layout>

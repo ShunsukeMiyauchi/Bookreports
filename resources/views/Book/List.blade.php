@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('登録されている本の一覧') }}
+            {{ __('登録されている本リスト') }}
         </h2>
     </x-slot>
     <html lang="ja">
@@ -12,6 +12,7 @@
             <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
         </head>
         <body>
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class="newbook"><a href="/newbook">新しい本を登録する</a></div>
             <div class='search_item'>
                     <h2 class='title'>タイトル</h2>
@@ -37,7 +38,7 @@
                         <p class='borrow_at'>貸出日時 {{ $book->borrow_at }}</p>
                         <p class='return_at'>返却日時 {{ $book->return_at }}</p>
                         <a href="/listbo/{{$book->id}}">レポートを作成する</a>
-                        <a href="/listboo/{{$book->id}}">レポートを編集する</a>
+                        <!--<a href="/listboo/{$book->id}}">レポートを編集する</a>-->
                         <form action="/listbook/{{$book->id}}" id="form_{{ $book->id }}" method="post">
                             @csrf
                             @method('DELETE')
@@ -45,6 +46,7 @@
                         </form>
                     </div>
                 @endforeach
+            </div>
             </div>
             <script>
                 function deletePost(id) {

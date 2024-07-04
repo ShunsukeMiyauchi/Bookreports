@@ -12,6 +12,7 @@
             <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
         </head>
         <body>
+        <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
         <form action="/category" method="POST">
             @csrf
             <div class="newcategory">
@@ -33,6 +34,7 @@
             <button type="button" onclick="deletePost()">カテゴリー削除</button> 
         </form>
          <div class="back">[<a href="/listbook">戻る</a>]</div>
+        </div>
         <script>
                 function deletePost() {
                     'use strict';

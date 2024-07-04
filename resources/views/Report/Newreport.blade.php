@@ -12,6 +12,7 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     </head>
     <body>
+    <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
       <p class='reference'>参照している本:{{ $book->title }}</p>
       <form action="/listbook/{{$book->id}}" method="POST">
          @csrf
@@ -26,6 +27,7 @@
         </div>
       </form>
       <div class="back">[<a href="/listbook">戻る</a>]</div>
+    </div>
     </body>
 </html>
 </x-app-layout>

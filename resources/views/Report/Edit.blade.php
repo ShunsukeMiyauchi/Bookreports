@@ -12,7 +12,7 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     </head>
     <body>
-    　 <p>{{$edit}}</p>
+    <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
         <form action="/listreport/{{ $edit->id }}" method="POST">
             @csrf
             @method('PUT')
@@ -24,6 +24,7 @@
             <input type="submit" value="編集"/>
         </form>
         <div class="back">[<a href="/listreport">戻る</a>]</div>
+    </div>
     </body>
 </html>
 </x-app-layout>

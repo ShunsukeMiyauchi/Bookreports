@@ -37,7 +37,7 @@ Route::controller(BookController::class)->middleware(['auth'])->group(function()
 Route::controller(ReportController::class)->middleware(['auth'])->group(function(){
    Route::get('/listbo/{newreport}', 'newreport');
    Route::post('/listbook/{newreport}', 'store');//「この本のレポートを作成する」
-   Route::get('/listboo/{report}', 'accompany');//「この本のレポートを見る」&テキスト編集
+   //Route::get('/listboo/{report}', 'accompany');//「この本のレポートを見る」&テキスト編集
    Route::put('/listbook/edit/{report}', 'update');
    Route::get('/listreport', 'listing')->name('listreport');//レポートリスト
    Route::get('/listreport/{report}edit', 'edition');//レポートリスト→特定のレポート編集
