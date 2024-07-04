@@ -13,7 +13,7 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('listbook')" :active="request()->routeIs('listbook')">
-                        {{ __('ホーム画面') }}
+                        {{ __('本リスト') }}
                     </x-nav-link>
                     <x-nav-link :href="route('schedule')" :active="request()->routeIs('schedule')">
                         {{ __('返却スケジュール') }}

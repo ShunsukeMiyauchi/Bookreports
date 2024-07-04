@@ -11,6 +11,7 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     </head>
     <body>
+        <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
         <form action="/newbook" method="POST">
             @csrf
             <div class='title'>
@@ -40,5 +41,6 @@
             <input type="submit" value="登録"/> 
         </form>
         <div class="back">[<a href="/listbook">戻る</a>]</div>
+        </div>
     </body>
 </x-app-layout>

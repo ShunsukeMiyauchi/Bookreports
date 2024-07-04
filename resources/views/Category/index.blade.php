@@ -12,6 +12,7 @@
             <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
         </head>
         <body>
+           <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class='books'>
                 @foreach ($books as $book)
                     <div class='book'>
@@ -25,5 +26,6 @@
                 @endforeach
             </div>
             <div class="back">[<a href="/listbook">本の一覧へ戻る</a>]</div>
+           </div>
         </body>
 </x-app-layout>

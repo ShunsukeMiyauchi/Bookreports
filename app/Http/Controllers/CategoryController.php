@@ -27,7 +27,7 @@ class CategoryController extends Controller
         return redirect('/listbook');
     }
     
-    public function update(Category $category, /*Category*/Request $request) // 引数をRequestからPostRequestにする
+    public function update(Category $category, CategoryRequest $request) // 引数をRequestからPostRequestにする
     {
         $category->timestamps = false;
         $input = $request['category'];

@@ -25,15 +25,15 @@ class ReportController extends Controller
         return redirect('/listbook');
     }
     
-    
-    public function accompany(Report $report, Book $book)
+    /*
+    public function accompany(Report $report)
     {
-        // ID($report)に合致するレコードを抜き出す
-        
-        $book = Book::find($report->book_id)->title; 
-        return view('Report.Accompany')->with(['accompany' => $report, 'book' => $book]);
+         # 2つのテーブルを結合して変数を返す
+        $report = Report::with('book')->where('book_id', $report->id)->first();
+        //dd($report->get());
+        return view('Report.Accompany', compact('report'));
         //レポート詳細画面
-    }
+    }*/
     
     public function update(Report $report, ReportRequest $request)
     {
@@ -41,11 +41,11 @@ class ReportController extends Controller
         $input_report = $request['report'];
         $input_report += ['user_id' => $request->user()->id]; 
         $input_report += ['book_id' => $request->book_id];
-        $accompany->fill($input_report)->save();
+        $reports->fill($input_report)->save();
         return redirect('/listbook');
     }
     
-    public function listing(Report $report)
+    public function listing(Report $reports)
     {
         # 2つのテーブルを結合して変数を返す
         $reports = Report::with('book')->get();
