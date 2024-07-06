@@ -18,8 +18,8 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id')->foreignId('user_id')->references('id')->on('users');
             $table->unsignedBigInteger('category_id')->foreignId('category_id')->references('id')->on('categories');
             $table->string('title', 100);
-            $table->dateTime('borrow_at');
-            $table->dateTime('return_at');
+            $table->date('borrow_at');
+            $table->date('return_at');
         });
     }
 

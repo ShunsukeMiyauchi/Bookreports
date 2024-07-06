@@ -4,11 +4,8 @@
             {{ __('返却スケジュール') }}
         </h2>
     </x-slot>
-    <html lang='ja'>
-      <head>
-        <meta charset='utf-8' />
         <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.14/index.global.min.js'></script>
-        <script>
+        {{--<script>
           document.addEventListener('DOMContentLoaded', function() {
             var calendarEl = document.getElementById('calendar');
             var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -28,20 +25,23 @@
                     month: '月',
                     list: 'リスト'
                 },
-              events:'fetchEvents.php',
+              //events:'fetchEvents.php',
+              //events:[
+              //  {
+              //  title: '{$book->title}}',
+              //  start: '{$book}}',
+              //  end: '{$book}}'
+              //  }
+              //],
             });
             //var events = calendar.getEventById('1');
             //console.log(); 
             calendar.render();
           });
-        </script>
-      </head>
-      <body>
+        </script>--}}
       <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
         <div id='calendar'></div>
       </div>
-      </body>
-    </html>
 </x-app-layout>
   
   <!-- 
