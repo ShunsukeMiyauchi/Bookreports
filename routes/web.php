@@ -27,6 +27,7 @@ Route::get('/dashboard', function () {
 
 Route::controller(BookController::class)->middleware(['auth'])->group(function(){
    Route::get('/schedule', 'schedule')->name('schedule');
+   Route::post('/schedule/event', 'getEvent')->name('event.get');
    Route::get('/listbook', 'listing')->name('listbook');
    Route::put('/listbook/{book}', 'update');
    Route::delete('/listbook/{book}','delete');

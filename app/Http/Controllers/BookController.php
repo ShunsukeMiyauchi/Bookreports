@@ -15,7 +15,6 @@ class BookController extends Controller
     {
         //dd($book);
         return view('Book.List')->with(['books' => $book->get(), 'categories' => $category->get()]);
-        //登録されている本画面(メインメニュー)
     }
     
     public function update(Book $book, BookRequest $request)
@@ -35,22 +34,34 @@ class BookController extends Controller
         return redirect('/listbook');
     }
     
-    public function schedule(Book $book)
+    public function schedule(Book $request)
     {
-        dd($book);
-        //$book= Book::find(1);
-        return view('Book.Schedule')->with(['book' => $book->get()]);
-        //'id'->$book['id'],
-        //'title'->$book['title'],
-        //'start'->$book['borrow_at'],
-        //'end'->$book['return_at'],
-        //)->get();
+        return view('Book.Schedule');
+    }
+    
+    public function getEvent(Book $book, Request $request)
+    {
+        $bookdata=$book->get();
+        //dd($bookdata);
+        //dd($request);
+        $start_date = date('Y-m-d', $request->input('start_date') / 1000);
+        $end_date = date('Y-m-d', $request->input('end_date') / 1000);
+
+        return Book::query()
+            ->select(
+                'borrow_at as start',
+                'return_at as end',
+                'title as title',
+                'id'
+            )
+            ->where('return_at', '>', $start_date)
+            ->where('borrow_at', '<', $end_date)
+            ->get();
     }
     
     public function newbook(Category $category)
     {
         return view('Book.Newbook')->with(['categories' => $category->get()]);
-        //本登録画面
     }
     
     public function store(Book $book, BookRequest $request)
