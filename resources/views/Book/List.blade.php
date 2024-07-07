@@ -23,6 +23,21 @@
             <div class='books'>
                 @foreach ($books as $book)
                     <div class='book'>
+                        @if($book->registerd)
+                        <form action="/listbook/{{$book->id}}" method="POST">
+                          @csrf
+                          <input type="hidden" name="book[registerd]" value="0">
+                          <button class="book[registerd]" type="submit">スケジュールから解除する</button>
+                        </form>
+                        @else
+                          <form action="/listbook/{{$book->id}}" method="POST">
+                              @csrf
+                              <!--<input type="hidden" value="0">-->
+                              <!--<input type="checkbox" value="1"/>-->
+                              <input type="hidden" name="book[registerd]" value="1">
+                              <button class="book[registerd]" type="submit">スケジュールに登録する</button>
+                          </form>
+                        @endif
                         <h2 class='title'>{{ $book->title }}</h2>
                         <a href="/categories/{{ $book->category->id }}">カテゴリー：{{ $book->category->name }}</a>
                       <form action="/listbook/{{$book->id}}" method="POST">

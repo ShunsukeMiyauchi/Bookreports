@@ -26,11 +26,12 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::controller(BookController::class)->middleware(['auth'])->group(function(){
-   Route::get('/schedule', 'schedule')->name('schedule');
-   Route::post('/schedule/event', 'getEvent')->name('event.get');
    Route::get('/listbook', 'listing')->name('listbook');
+   Route::post('/listbook/{book}', 'add_schedule');
    Route::put('/listbook/{book}', 'update');
    Route::delete('/listbook/{book}','delete');
+   Route::get('/schedule', 'schedule')->name('schedule');
+   Route::post('/schedule/event', 'getEvent')->name('event.get');
    Route::get('/newbook', 'newbook');
    Route::post('/newbook', 'store');//新規本入力
 });
