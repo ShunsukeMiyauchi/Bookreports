@@ -5,49 +5,7 @@
         </h2>
     </x-slot>
         <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.14/index.global.min.js'></script>
-        {{--<script>
-          document.addEventListener('DOMContentLoaded', function() {
-            var calendarEl = document.getElementById('calendar');
-            var calendar = new FullCalendar.Calendar(calendarEl, {
-              initialView: 'dayGridMonth',
-              timeZone: 'Asia/Tokyo',
-              locale: 'ja',
-              height: 'auto',
-              firstDay: 1,
-              businessHours:true,
-              headerToolbar: {
-                left: "dayGridMonth,listMonth",
-                center: "title",
-                right: "today prev,next"
-              },
-              buttonText: {
-                    today: '今月',
-                    month: '月',
-                    list: 'リスト'
-                },
-              //events:'fetchEvents.php',
-              //events:[
-              //  {
-              //  title: '{$book->title}}',
-              //  start: '{$book}}',
-              //  end: '{$book}}'
-              //  }
-              //],
-            });
-            //var events = calendar.getEventById('1');
-            //console.log(); 
-            calendar.render();
-          });
-        </script>--}}
       <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
         <div id='calendar'></div>
       </div>
 </x-app-layout>
-  
-  <!-- 
-    navLinks: true, // can click day/week names to navigate views
-    editable: true,
-    dayMaxEvents: true, // allow "more" link when too many events
-    events,
-  });
-  calendar.render(); -->

@@ -16,7 +16,8 @@ class Book extends Model
             'borrow_at',
             'return_at',
             'category_id',
-            'user_id'
+            'user_id',
+            'registerd'
     ];
 
     public $timestamps = false; // https://qiita.com/ikadatic/items/2237a3c1b837894dfc30

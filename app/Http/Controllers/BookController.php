@@ -11,6 +11,7 @@ use App\Models\Category;
 class BookController extends Controller
 {
     
+    
     public function listing(Book $book, Category $category)
     {
         //dd($book);
@@ -39,11 +40,9 @@ class BookController extends Controller
         return view('Book.Schedule');
     }
     
-    public function getEvent(Book $book, Request $request)
+    public function getEvent(Request $request)
     {
-        $bookdata=$book->get();
-        //dd($bookdata);
-        //dd($request);
+        //$bookId = $this->add_schedule();
         $start_date = date('Y-m-d', $request->input('start_date') / 1000);
         $end_date = date('Y-m-d', $request->input('end_date') / 1000);
 
@@ -56,7 +55,16 @@ class BookController extends Controller
             )
             ->where('return_at', '>', $start_date)
             ->where('borrow_at', '<', $end_date)
+            ->where('registerd',true)
             ->get();
+    }
+    
+    public function add_schedule(Book $book, Request $request)
+    {
+        $input = $request['book'];
+        $book->registerd = $input['registerd'];
+        $book->save();
+        return redirect('/listbook');
     }
     
     public function newbook(Category $category)
