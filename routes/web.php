@@ -5,6 +5,11 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Notification;
+use App\Models\Book;
+//use App\Invoice;
+use App\Notifications\InvoicePaid;
+//use App\Jobs\ProcessNotification;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +25,18 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+//::send($users, new InvoicePaid($invoice));
+
+Route::get('/notification', [Bookcontroller::class, 'hoge'])->middleware('auth');
+
+
+// このジョブは、デフォルトの接続の"emails"キューに送信される
+//ProcessNotification::dispatch()->onQueue('emails');
+
+// Route::get('/notification', function () {
+//     $invoice = Invoice::find(1);
+// });
 
 Route::get('/dashboard', function () {
     return view('dashboard');
