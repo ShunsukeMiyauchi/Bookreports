@@ -13,11 +13,24 @@ use App\Mail\Information;
 class BookController extends Controller
 {
         public function hoge(){
+        
+        
+        // public function sendmail(Book $book)
+        // {
+        //     $invoice = Book::find(1);
+        //     //$user=User::find(1);
+        //     //dd($invoice->user);
+        //     //$user->notify(new InvoicePaid($invoice));
+        //     return (new InvoicePaid($invoice))
+        //                  ->toMail($invoice->user);
+        // }
+        
         // 2. create instance
-        $notification = new Information();
+        $book = Book::find(1);
+        $notification = new Information($book);
 				// 3. send mail
         Mail::send( $notification );
-
+        return redirect('/schedule');
 				// 4.supplement:you can also add addres in here
 				// Mail::to($request->test1)
 				//     ->cc($request->test2)
@@ -38,16 +51,6 @@ class BookController extends Controller
     //     						return redirect()->route('hoge')->with(compact('messages'));
     //             }				
             }
-
-    // public function sendmail(Book $book)
-    // {
-    //     $invoice = Book::find(1);
-    //     //$user=User::find(1);
-    //     //dd($invoice->user);
-    //     //$user->notify(new InvoicePaid($invoice));
-    //     return (new InvoicePaid($invoice))
-    //                  ->toMail($invoice->user);
-    // }
     
     public function listing(Book $book, Category $category)
     {
