@@ -10,19 +10,28 @@ use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 use App\Mail\InvoicePaid as InvoicePaidMailable;
 use App\Models\Book;
+//use App\Models\User;
 
 class Information extends Mailable
 {
     use Queueable, SerializesModels;
-
+    
+    /**
+     * book instance
+     *
+     * @var \App\Models\Book
+     */
+    protected $book;
+    
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($book)
     {
         //
+        $this->book=$book;
     }
 
     /**
@@ -33,8 +42,7 @@ class Information extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'Information',
-        //subject'返却期限が近づいている本があります')
+            subject: '返却期限が近づいている本があります',
         );
     }
 
@@ -47,6 +55,11 @@ class Information extends Mailable
     {
         return new Content(
             view: 'mail.notification',
+            with: [
+                'title' => $this->book->title,
+                'id' => $this->book->id,
+                'return_at' => $this->book->return_at,
+            ],
         );
     }
     
