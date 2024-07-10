@@ -7,6 +7,9 @@ use App\Models\Book;
 use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\Information;
+use DateTime;
+use DateTimeZone;
+use Illuminate\Support\Facades\Log;
 
 class Notify extends Command
 {
@@ -42,15 +45,26 @@ class Notify extends Command
      */
     public function handle()
     {
-        $book=Book::find(1);
-        $notification = new Information($book);
+        $now = new DateTime('now');
+        $now->setTimezone(new DateTimeZone('Asia/Tokyo')); 
+      
+        $futureDate = $now->modify('+2 days');
+        $books=Book::whereDate('return_at','<=', $futureDate)->get();
+        // $notifications =$books->map(function ($book){
+        //       $notification=new Information($book);
+        //       return $notification;
+        // });
 				// 3. send mail
-        Mail::send( $notification );
+		//Mail::to('miyashun1524@gmail.com')->send($notifications);
+        //Mail::send( $notifications);
+        Mail::send('mail.Notification', ['books' => $books], function ($message) {
+        $message->to('miyashun1524@gmail.com')->subject('返却期限の通知');
                     // 4.supplement:you can also add addres in here
             			// Mail::to($request->test1)
             			//     ->cc($request->test2)
             			//     ->bcc($request->test3)
             			//     ->send($welcomeMail);
         //return Command::SUCCESS;
+    });
     }
 }
