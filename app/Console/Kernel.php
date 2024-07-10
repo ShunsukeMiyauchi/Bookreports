@@ -5,7 +5,8 @@ namespace App\Console;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use App\Models\Book;
-use Carbon\Carbon;
+use DateTime;
+use DateTimeZone;
 
 class Kernel extends ConsoleKernel
 {
@@ -18,16 +19,20 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-      $schedule->command('command:notify')->everyMinute()->timezone('Asia/Tokyo')->when(function () {
-        $now = Carbon::now();
-        $book=Book::find(8);
-        $return_at = Carbon::parse($book->return_at);
-        if ($return_at ->diffInMinutes($now) <= 2880)
+      $schedule->command('command:notify')->everyMinute()->when(function () {
+      $now = new DateTime('now');
+      $now->setTimezone(new DateTimeZone('Asia/Tokyo')); 
+      
+      $futureDate = $now->modify('+2 days');
+      $book=Book::whereDate('return_at','<=', $futureDate)->first();
+      
+        if (is_null($book))
         {
-            return true;
-        }else{
             return false;
+        }else{
+            return true;
         }
+        
         });
     }
 

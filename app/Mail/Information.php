@@ -10,7 +10,7 @@ use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 use App\Mail\InvoicePaid as InvoicePaidMailable;
 use App\Models\Book;
-//use App\Models\User;
+use Illuminate\Support\Facades\Log;
 
 class Information extends Mailable
 {
@@ -21,17 +21,17 @@ class Information extends Mailable
      *
      * @var \App\Models\Book
      */
-    protected $book;
+    public $books;
     
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($book)
+    public function __construct($books)
     {
         //
-        $this->book=$book;
+        $this->book=$books;
     }
 
     /**
@@ -54,12 +54,12 @@ class Information extends Mailable
     public function content()
     {
         return new Content(
-            view: 'mail.notification',
-            with: [
-                'title' => $this->book->title,
-                'id' => $this->book->id,
-                'return_at' => $this->book->return_at,
-            ],
+            view: 'mail.Notification',
+            //with: ['books'=>$this->books],
+            //      'title' => $this->book->title,
+            //      'id' => $this->book->id,
+            //      'return_at' => $this->book->return_at,
+            // ],
         );
     }
     
